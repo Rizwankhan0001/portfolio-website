@@ -135,9 +135,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub](https://github.com/yourusername)
+- **Email**: rizwankhan88149@gmail.com
+- **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/khan-rizwan07)
+- **GitHub**: [Your GitHub](https://github.com/RizwanKhan0001)
 
 ---
 
