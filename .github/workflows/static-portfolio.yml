@@ -1,0 +1,32 @@
+name: Static portfolio checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: node --check frontend/script.js
+      - name: Check for placeholder content and links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          content = Path("frontend/index.html").read_text()
+          bad = ['href="#"', 'your.email@example.com', 'Your City, Country', 'Your Name - Portfolio', '50+', '100%']
+          found = [text for text in bad if text in content]
+          if found:
+              raise SystemExit("Remove placeholder or misleading content: " + ", ".join(found))
+          print("No known placeholder content remains")
+          PY
