@@ -65,57 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact form handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const subject = contactForm.querySelectorAll('input[type="text"]')[1].value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Simulate form submission
-        const submitBtn = contactForm.querySelector('.btn');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate API call
-        setTimeout(() => {
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-}
+// Contact is handled by a direct mailto link; do not fake submission success.
 
 // Typing animation for hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
-    element.innerHTML = '';
+    element.textContent = '';
     
     function type() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+            element.textContent += text.charAt(i);
             i++;
             setTimeout(type, speed);
         }
@@ -126,10 +85,11 @@ function typeWriter(element, text, speed = 100) {
 
 // Initialize typing animation when page loads
 window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 50);
+    // Animate only the role text to preserve the hero heading's child elements.
+    const roleText = document.querySelector('.title-role');
+    if (roleText) {
+        const originalText = roleText.textContent;
+        typeWriter(roleText, originalText, 50);
     }
 });
 
